@@ -1,14 +1,10 @@
 // Reducers
-import {ADD_HISTORY, RECORD_STEP_NUMBER, TOGGLE_XISNEXT} from "./actions";
+const initialHistory = [{currentLocation: null, squares: Array(9).fill(null), }, ];
 
-export const history = (state=[], action) => {
+export const history = (state=initialHistory, action) => {
     switch (action.type) {
-        case ADD_HISTORY:
-            return Object.assign({}, state, {
-                history: [...state.history,
-                    {currentLocation: action.currentLocation, squares: action.squares}
-                ]
-            });
+        case 'ADD_HISTORY':
+            return action.history;
         default:
             return state;
     }
@@ -16,7 +12,7 @@ export const history = (state=[], action) => {
 
 export const stepNumber = (state=0, action) => {
     switch (action.type) {
-        case RECORD_STEP_NUMBER:
+        case 'CHANGE_STEP_NUMBER':
             return action.step;
         default:
             return state;
@@ -25,7 +21,7 @@ export const stepNumber = (state=0, action) => {
 
 export const xIsNext = (state=true, action) => {
     switch (action.type) {
-        case TOGGLE_XISNEXT:
+        case 'TOGGLE_XISNEXT':
             return action.value;
         default:
             return state;
